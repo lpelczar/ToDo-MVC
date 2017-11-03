@@ -1,6 +1,7 @@
-from view import MenuView, AddItemView, ModifyItemView, DeleteItemView, MarkItemView, DisplayListView
+from view import *
 from model import Model
 import os
+import sys
 
 
 class Controller:
@@ -21,6 +22,7 @@ class Controller:
         self.delete_item_view = DeleteItemView()
         self.mark_item_view = MarkItemView()
         self.display_list_view = DisplayListView()
+        self.display_specific_item_view = DisplaySpecificItemView()
 
     def begin(self):
         os.system('clear')
@@ -40,6 +42,10 @@ class Controller:
                     self.mark_as_done()
                 elif option == '5':
                     self.display_items()
+                elif option == '6':
+                    self.display_specific_item()
+                elif option == '7':
+                    sys.exit()
 
     def show_menu(self):
         self.menu_view.display()
@@ -56,28 +62,36 @@ class Controller:
         description = self.ask_description_input()
         try:
             self.model.modify_item(index, name, description)
+            self.modify_item_view.display(index)
         except IndexError:
             print('Wrong index!')
-        self.modify_item_view.display(index)
 
     def mark_as_done(self):
         index = self.ask_index_input()
         try:
             self.model.mark_as_done(index)
+            self.mark_item_view.display(index)
         except IndexError:
             print('Wrong index!')
-        self.mark_item_view.display(index)
 
     def delete_item(self):
         index = self.ask_index_input()
         try:
             self.model.delete_item(index)
+            self.delete_item_view.display(index)
         except IndexError:
             print('Wrong index!')
-        self.delete_item_view.display(index)
 
     def display_items(self):
         self.display_list_view.display(self.model.get_items())
+
+    def display_specific_item(self):
+        index = self.ask_index_input()
+        try:
+            item = self.model.get_specific_item(index)
+            self.display_specific_item_view.display(item)
+        except IndexError:
+            print('Wrong index!')
 
     @staticmethod
     def ask_index_input():

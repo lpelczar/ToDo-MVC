@@ -20,3 +20,6 @@ class Model:
 
     def get_items(self):
         return self.todo_items
+
+    def get_specific_item(self, index):
+        return self.todo_items[index]

@@ -47,4 +47,7 @@ class DisplayListView:
 
 
 class DisplaySpecificItemView:
-    ...
+
+    @staticmethod
+    def display(item):
+        print(item, '--', item.description)
