@@ -1,8 +1,9 @@
 class TodoItem:
 
-    def __init__(self, name, description, is_done=False):
+    def __init__(self, name, description, deadline=None, is_done=False):
         self.name = name
         self.description = description
+        self.deadline = deadline
         self.is_done = is_done
 
     def mark_as_done(self):

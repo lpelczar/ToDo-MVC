@@ -2,6 +2,7 @@ from view import *
 from model import Model
 import os
 import sys
+import datetime
 
 MAX_NAME_CHARS = 20
 MAX_DESC_CHARS = 150
@@ -63,7 +64,8 @@ class Controller:
     def add_todo_item(self):
         name = self.ask_name_input()
         description = self.ask_description_input()
-        self.model.add_item(name, description)
+        date = self.ask_date_input()
+        self.model.add_item(name, description, date)
         self.add_item_view.display(name)
 
     def modify_item(self):
@@ -135,3 +137,18 @@ class Controller:
                 print('Description is too long!')
             else:
                 return description
+
+    @staticmethod
+    def ask_date_input():
+        year_index = 0
+        month_index = 1
+        day_index = 2
+
+        while True:
+            try:
+                date = input('Enter date in the following syntax: year,month,day ')
+                date = date.split(',')
+                deadline = datetime.date(int(date[year_index]), int(date[month_index]), int(date[day_index]))
+                return deadline
+            except:
+                print('Wrong input!')
