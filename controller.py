@@ -72,8 +72,9 @@ class Controller:
         index = self.ask_index_input()
         name = self.ask_name_input()
         description = self.ask_description_input()
+        date = self.ask_date_input()
         try:
-            self.model.modify_item(index, name, description)
+            self.model.modify_item(index, name, description, date)
             self.modify_item_view.display(index)
         except IndexError:
             print('Wrong index!')
@@ -146,7 +147,9 @@ class Controller:
 
         while True:
             try:
-                date = input('Enter date in the following syntax: year,month,day ')
+                date = input('Enter date in the following syntax or press enter to add without date: year,month,day ')
+                if not date:
+                    return None
                 date = date.split(',')
                 deadline = datetime.date(int(date[year_index]), int(date[month_index]), int(date[day_index]))
                 return deadline

@@ -8,6 +8,7 @@ class TodoItem:
 
     def mark_as_done(self):
         self.is_done = True
+        self.deadline = None
 
     def __str__(self):
         mark = 'X' if self.is_done else ' '

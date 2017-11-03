@@ -43,12 +43,15 @@ class DisplayListView:
 
     @staticmethod
     def display(items):
-        for k, v in enumerate(items):
-            print(k + STARTING_INDEX, v)
+        if not items:
+            print('List is empty!')
+        else:
+            for k, v in enumerate(items):
+                print(k + STARTING_INDEX, v.deadline if v.deadline else '', v)
 
 
 class DisplaySpecificItemView:
 
     @staticmethod
     def display(item):
-        print(item, '--', item.description)
+        print(item.deadline if item.deadline else '', item, '->', item.description)
