@@ -32,7 +32,12 @@ class Model:
                 writer.writerow([i.name, i.description, i.is_done])
 
     def read_from_file(self):
+        name_index = 0
+        description_index = 1
+        is_done_index = 2
+
         with open('data.csv', 'r') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
-                self.todo_items.append(TodoItem(row[0], row[1], True if row[2] == 'True' else False))
+                self.todo_items.append(TodoItem(row[name_index], row[description_index],
+                                       True if row[is_done_index] == 'True' else False))
