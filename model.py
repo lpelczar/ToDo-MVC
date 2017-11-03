@@ -8,3 +8,6 @@ class Model:
 
     def add_item(self, name, description):
         self.todo_items.append(TodoItem(name, description))
+
+    def modify_item(self, index, name, description):
+        self.todo_items[index] = TodoItem(name, description)

@@ -38,10 +38,28 @@ class Controller:
         self.model.add_item(name, description)
         self.add_item_view.display(name)
 
+    def modify_item(self):
+        index = self.ask_index_input()
+        name = self.ask_name_input()
+        description = self.ask_description_input()
+        try:
+            self.model.modify_item(index, name, description)
+        except IndexError:
+            print('Wrong index!')
+
+    @staticmethod
+    def ask_index_input():
+        while True:
+            try:
+                index = int(input('Enter index of item you want to modify: '))
+                return index
+            except ValueError:
+                print('You need to enter a number!')
+
     @staticmethod
     def ask_name_input():
         while True:
-            name = input('Enter name (max 20 characters): ')
+            name = input('Enter name (max 20 characters): ').strip()
             if len(name) > 20:
                 print('Name is too long!')
             else:
@@ -50,7 +68,7 @@ class Controller:
     @staticmethod
     def ask_description_input():
         while True:
-            description = input('Enter description (max 150 characters): ')
+            description = input('Enter description (max 150 characters): ').strip()
             if len(description) > 150:
                 print('Description is too long!')
             else:

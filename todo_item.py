@@ -5,12 +5,6 @@ class TodoItem:
         self.description = description
         self.is_done = is_done
 
-    def modify_item(self, name=None, description=None):
-        if name:
-            self.name = name
-        if description:
-            self.description = description
-
     def mark_as_done(self):
         self.is_done = True
 
