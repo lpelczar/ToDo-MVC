@@ -9,4 +9,5 @@ class TodoItem:
         self.is_done = True
 
     def __str__(self):
-        return 'Name: {} Description: {}'.format(self.name, self.description)
+        mark = 'X' if self.is_done else ' '
+        return '[{}] {} - {}'.format(mark, self.name, self.description)

@@ -1,4 +1,4 @@
-from view import MenuView, AddItemView
+from view import MenuView, AddItemView, DisplayListView
 from model import Model
 import os
 
@@ -17,6 +17,7 @@ class Controller:
         self.model = Model()
         self.menu_view = MenuView(self.OPTIONS)
         self.add_item_view = AddItemView()
+        self.display_list_view = DisplayListView()
 
     def begin(self):
         os.system('clear')
@@ -26,8 +27,10 @@ class Controller:
             if option in self.OPTIONS.keys():
                 if option == '1':
                     self.add_todo_item()
-                if option == '2':
+                elif option == '2':
                     self.modify_item()
+                elif option == '5':
+                    self.display_items()
 
     def show_menu(self):
         self.menu_view.display()
@@ -46,6 +49,9 @@ class Controller:
             self.model.modify_item(index, name, description)
         except IndexError:
             print('Wrong index!')
+
+    def display_items(self):
+        self.display_list_view.display(self.model.get_items())
 
     @staticmethod
     def ask_index_input():

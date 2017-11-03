@@ -29,7 +29,11 @@ class MarkItemView:
 
 
 class DisplayListView:
-    ...
+
+    @staticmethod
+    def display(items):
+        for k, v in enumerate(items):
+            print(k, v)
 
 
 class DisplaySpecificItemView:
