@@ -3,6 +3,10 @@ from model import Model
 import os
 import sys
 
+MAX_NAME_CHARS = 20
+MAX_DESC_CHARS = 150
+STARTING_INDEX = 1
+
 
 class Controller:
 
@@ -98,7 +102,7 @@ class Controller:
         while True:
             try:
                 index = int(input('Enter index of item: '))
-                return index - 1
+                return index - STARTING_INDEX
             except ValueError:
                 print('You need to enter a number!')
 
@@ -106,7 +110,7 @@ class Controller:
     def ask_name_input():
         while True:
             name = input('Enter name (max 20 characters): ').strip()
-            if len(name) > 20:
+            if len(name) > MAX_NAME_CHARS:
                 print('Name is too long!')
             else:
                 return name
@@ -115,7 +119,7 @@ class Controller:
     def ask_description_input():
         while True:
             description = input('Enter description (max 150 characters): ').strip()
-            if len(description) > 150:
+            if len(description) > MAX_DESC_CHARS:
                 print('Description is too long!')
             else:
                 return description

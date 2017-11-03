@@ -1,3 +1,6 @@
+STARTING_INDEX = 1
+
+
 class MenuView:
 
     @staticmethod
@@ -19,21 +22,21 @@ class ModifyItemView:
 
     @staticmethod
     def display(index):
-        print('Item {} successfully modified!'.format(index + 1))
+        print('Item {} successfully modified!'.format(index + STARTING_INDEX))
 
 
 class DeleteItemView:
 
     @staticmethod
     def display(index):
-        print('Item {} has been successfully deleted!'.format(index + 1))
+        print('Item {} has been successfully deleted!'.format(index + STARTING_INDEX))
 
 
 class MarkItemView:
 
     @staticmethod
     def display(index):
-        print('Item {} successfully marked as done!'.format(index + 1))
+        print('Item {} successfully marked as done!'.format(index + STARTING_INDEX))
 
 
 class DisplayListView:
@@ -41,7 +44,7 @@ class DisplayListView:
     @staticmethod
     def display(items):
         for k, v in enumerate(items):
-            print(k + 1, v)
+            print(k + STARTING_INDEX, v)
 
 
 class DisplaySpecificItemView:
