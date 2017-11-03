@@ -30,7 +30,7 @@ class Model:
         with open('data.csv', 'w') as csvfile:
             writer = csv.writer(csvfile)
             for i in self.todo_items:
-                writer.writerow([i.name, i.description, i.deadline, i.is_done])
+                writer.writerow([i.name, i.description, i.deadline if i.deadline else 'None', i.is_done])
 
     def read_from_file(self):
         name_index = 0
@@ -41,7 +41,10 @@ class Model:
         with open('data.csv', 'r') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
-                date = row[deadline_index].split('-')
-                date = datetime.date(int(date[0]), int(date[1]), int(date[2]))
-                self.todo_items.append(TodoItem(row[name_index], row[description_index], row[deadline_index],
+                if row[deadline_index] != 'None':
+                    date = row[deadline_index].split('-')
+                    date = datetime.date(int(date[0]), int(date[1]), int(date[2]))
+                else:
+                    date = None
+                self.todo_items.append(TodoItem(row[name_index], row[description_index], date,
                                        True if row[is_done_index] == 'True' else False))
