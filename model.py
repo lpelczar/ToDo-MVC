@@ -1,4 +1,5 @@
 from todo_item import TodoItem
+import csv
 
 
 class Model:
@@ -23,3 +24,15 @@ class Model:
 
     def get_specific_item(self, index):
         return self.todo_items[index]
+
+    def save_to_file(self):
+        with open('data.csv', 'w') as csvfile:
+            writer = csv.writer(csvfile)
+            for i in self.todo_items:
+                writer.writerow([i.name, i.description, i.is_done])
+
+    def read_from_file(self):
+        with open('data.csv', 'r') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                self.todo_items.append(TodoItem(row[0], row[1], True if row[2] == 'True' else False))

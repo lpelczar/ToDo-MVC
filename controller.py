@@ -16,7 +16,9 @@ class Controller:
                '4': 'Mark Item',
                '5': 'Display Items',
                '6': 'Display Specific Item',
-               '7': 'Exit program'}
+               '7': 'Save tasks to file',
+               '8': 'Read from file',
+               '0': 'Exit program'}
 
     def __init__(self):
         self.model = Model()
@@ -49,6 +51,10 @@ class Controller:
                 elif option == '6':
                     self.display_specific_item()
                 elif option == '7':
+                    self.save_to_file()
+                elif option == '8':
+                    self.read_from_file()
+                elif option == '0':
                     sys.exit()
 
     def show_menu(self):
@@ -96,6 +102,12 @@ class Controller:
             self.display_specific_item_view.display(item)
         except IndexError:
             print('Wrong index!')
+
+    def save_to_file(self):
+        self.model.save_to_file()
+
+    def read_from_file(self):
+        self.model.read_from_file()
 
     @staticmethod
     def ask_index_input():
