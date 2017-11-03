@@ -7,6 +7,7 @@ class MenuView:
         print('Todo App. What do you want to do?')
         for k, v in self.options.items():
             print(' {}. {}'.format(k, v))
+        print(' ')
 
 
 class AddItemView:
@@ -20,7 +21,7 @@ class ModifyItemView:
 
     @staticmethod
     def display(index):
-        print('Item {} successfully modified!'.format(index))
+        print('Item {} successfully modified!'.format(index + 1))
 
 
 class DeleteItemView:
@@ -36,7 +37,7 @@ class DisplayListView:
     @staticmethod
     def display(items):
         for k, v in enumerate(items):
-            print(k, v)
+            print(k + 1, v)
 
 
 class DisplaySpecificItemView:

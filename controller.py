@@ -25,6 +25,8 @@ class Controller:
         self.show_menu()
         while True:
             option = input('Choose option: ')
+            os.system('clear')
+            self.show_menu()
             if option in self.OPTIONS.keys():
                 if option == '1':
                     self.add_todo_item()
@@ -60,7 +62,7 @@ class Controller:
         while True:
             try:
                 index = int(input('Enter index of item you want to modify: '))
-                return index
+                return index - 1
             except ValueError:
                 print('You need to enter a number!')
 
