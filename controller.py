@@ -1,4 +1,4 @@
-from view import *
+from view import MenuView, AddItemView
 from model import Model
 
 
@@ -14,7 +14,8 @@ class Controller:
 
     def __init__(self):
         self.model = Model()
-        self.menuview = MenuView(self.OPTIONS)
+        self.menu_view = MenuView(self.OPTIONS)
+        self.add_item_view = AddItemView()
 
     def begin(self):
         self.show_menu()
@@ -23,6 +24,21 @@ class Controller:
             if option in self.OPTIONS.keys():
                 if option == '1':
                     self.add_todo_item()
+                    break
 
     def show_menu(self):
-        self.menuview.display_menu()
+        self.menu_view.display()
+
+    def add_todo_item(self):
+        while True:
+            name = input('Enter name (max 20 characters): ')
+            if len(name) > 20:
+                print('Name is too long!')
+            break
+        while True:
+            description = input('Enter description (max 150 characters): ')
+            if len(description) > 150:
+                print('Description is too long!')
+            break
+        self.model.add_item(name, description)
+        self.add_item_view.display(name)
