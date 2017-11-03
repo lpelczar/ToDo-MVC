@@ -2,8 +2,8 @@ from controller import Controller
 
 
 def main():
-    controller = Controller()
-    controller.show_menu()
+    c = Controller()
+    c.begin()
 
 
 if __name__ == "__main__":
