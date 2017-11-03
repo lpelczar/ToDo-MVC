@@ -13,6 +13,7 @@ class Controller:
                '5': 'Display Items',
                '6': 'Display Specific Item',
                '7': 'Save tasks to file',
+               '8': 'Read from file',
                '0': 'Exit program'}
 
     def __init__(self):
@@ -47,6 +48,8 @@ class Controller:
                     self.display_specific_item()
                 elif option == '7':
                     self.save_to_file()
+                elif option == '8':
+                    self.read_from_file()
                 elif option == '0':
                     sys.exit()
 
@@ -98,6 +101,9 @@ class Controller:
 
     def save_to_file(self):
         self.model.save_to_file()
+
+    def read_from_file(self):
+        self.model.read_from_file()
 
     @staticmethod
     def ask_index_input():
