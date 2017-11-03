@@ -1,4 +1,4 @@
-from view import MenuView, AddItemView, DisplayListView
+from view import MenuView, AddItemView, ModifyItemView, DisplayListView
 from model import Model
 import os
 
@@ -17,6 +17,7 @@ class Controller:
         self.model = Model()
         self.menu_view = MenuView(self.OPTIONS)
         self.add_item_view = AddItemView()
+        self.modify_item_view = ModifyItemView()
         self.display_list_view = DisplayListView()
 
     def begin(self):
@@ -49,6 +50,7 @@ class Controller:
             self.model.modify_item(index, name, description)
         except IndexError:
             print('Wrong index!')
+        self.modify_item_view.display(index)
 
     def display_items(self):
         self.display_list_view.display(self.model.get_items())

@@ -17,7 +17,10 @@ class AddItemView:
 
 
 class ModifyItemView:
-    ...
+
+    @staticmethod
+    def display(index):
+        print('Item {} successfully modified!'.format(index))
 
 
 class DeleteItemView:
