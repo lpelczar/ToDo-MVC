@@ -16,7 +16,7 @@ class Controller:
 
     def __init__(self):
         self.model = Model()
-        self.menu_view = MenuView(self.OPTIONS)
+        self.menu_view = MenuView()
         self.add_item_view = AddItemView()
         self.modify_item_view = ModifyItemView()
         self.delete_item_view = DeleteItemView()
@@ -48,7 +48,7 @@ class Controller:
                     sys.exit()
 
     def show_menu(self):
-        self.menu_view.display()
+        self.menu_view.display(self.OPTIONS)
 
     def add_todo_item(self):
         name = self.ask_name_input()

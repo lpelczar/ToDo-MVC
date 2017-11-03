@@ -1,11 +1,9 @@
 class MenuView:
 
-    def __init__(self, options):
-        self.options = options
-
-    def display(self):
+    @staticmethod
+    def display(options):
         print('Todo App. What do you want to do?')
-        for k, v in self.options.items():
+        for k, v in options.items():
             print(' {}. {}'.format(k, v))
         print(' ')
 
