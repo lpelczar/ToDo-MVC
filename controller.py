@@ -1,4 +1,4 @@
-from view import MenuView, AddItemView, ModifyItemView, MarkItemView, DisplayListView
+from view import MenuView, AddItemView, ModifyItemView, DeleteItemView, MarkItemView, DisplayListView
 from model import Model
 import os
 
@@ -18,6 +18,7 @@ class Controller:
         self.menu_view = MenuView(self.OPTIONS)
         self.add_item_view = AddItemView()
         self.modify_item_view = ModifyItemView()
+        self.delete_item_view = DeleteItemView()
         self.mark_item_view = MarkItemView()
         self.display_list_view = DisplayListView()
 
@@ -33,6 +34,8 @@ class Controller:
                     self.add_todo_item()
                 elif option == '2':
                     self.modify_item()
+                elif option == '3':
+                    self.delete_item()
                 elif option == '4':
                     self.mark_as_done()
                 elif option == '5':
@@ -64,6 +67,14 @@ class Controller:
         except IndexError:
             print('Wrong index!')
         self.mark_item_view.display(index)
+
+    def delete_item(self):
+        index = self.ask_index_input()
+        try:
+            self.model.delete_item(index)
+        except IndexError:
+            print('Wrong index!')
+        self.delete_item_view.display(index)
 
     def display_items(self):
         self.display_list_view.display(self.model.get_items())

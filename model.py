@@ -15,5 +15,8 @@ class Model:
     def mark_as_done(self, index):
         self.todo_items[index].mark_as_done()
 
+    def delete_item(self, index):
+        self.todo_items.pop(index)
+
     def get_items(self):
         return self.todo_items
