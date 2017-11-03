@@ -29,7 +29,10 @@ class DeleteItemView:
 
 
 class MarkItemView:
-    ...
+
+    @staticmethod
+    def display(index):
+        print('Item {} successfully marked as done!'.format(index + 1))
 
 
 class DisplayListView:

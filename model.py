@@ -12,5 +12,8 @@ class Model:
     def modify_item(self, index, name, description):
         self.todo_items[index] = TodoItem(name, description)
 
+    def mark_as_done(self, index):
+        self.todo_items[index].mark_as_done()
+
     def get_items(self):
         return self.todo_items
