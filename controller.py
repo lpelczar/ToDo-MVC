@@ -95,7 +95,7 @@ class Controller:
         index = self.ask_index_input()
         try:
             item = self.model.get_specific_item(index)
-            DisplaySpecificItemView.display(item)
+            DisplaySpecificItemView.display(index, item)
         except IndexError:
             print('Wrong index!')
 

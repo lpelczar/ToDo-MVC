@@ -85,8 +85,9 @@ class DisplaySpecificItemView:
     View which shows the specific item informations: deadline, index, is_done, name, description
     """
     @staticmethod
-    def display(item):
+    def display(index, item):
         """
+        :param index: int -> index of the specific item
         :param item: TodoItem -> single TodoItem object
         """
-        print(item.deadline if item.deadline else '', item, '->', item.description)
+        print(index + STARTING_INDEX, item.deadline if item.deadline else '', item, '->', item.description)
