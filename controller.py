@@ -23,13 +23,6 @@ class Controller:
 
     def __init__(self):
         self.model = Model()
-        self.menu_view = MenuView()
-        self.add_item_view = AddItemView()
-        self.modify_item_view = ModifyItemView()
-        self.delete_item_view = DeleteItemView()
-        self.mark_item_view = MarkItemView()
-        self.display_list_view = DisplayListView()
-        self.display_specific_item_view = DisplaySpecificItemView()
 
     def begin(self):
         os.system('clear')
@@ -59,14 +52,14 @@ class Controller:
                     sys.exit()
 
     def show_menu(self):
-        self.menu_view.display(self.OPTIONS)
+        MenuView.display(self.OPTIONS)
 
     def add_todo_item(self):
         name = self.ask_name_input()
         description = self.ask_description_input()
         date = self.ask_date_input()
         self.model.add_item(name, description, date)
-        self.add_item_view.display(name)
+        AddItemView.display(name)
 
     def modify_item(self):
         index = self.ask_index_input()
@@ -75,7 +68,7 @@ class Controller:
         date = self.ask_date_input()
         try:
             self.model.modify_item(index, name, description, date)
-            self.modify_item_view.display(index)
+            ModifyItemView.display(index)
         except IndexError:
             print('Wrong index!')
 
@@ -83,7 +76,7 @@ class Controller:
         index = self.ask_index_input()
         try:
             self.model.mark_as_done(index)
-            self.mark_item_view.display(index)
+            MarkItemView.display(index)
         except IndexError:
             print('Wrong index!')
 
@@ -91,18 +84,18 @@ class Controller:
         index = self.ask_index_input()
         try:
             self.model.delete_item(index)
-            self.delete_item_view.display(index)
+            DeleteItemView.display(index)
         except IndexError:
             print('Wrong index!')
 
     def display_items(self):
-        self.display_list_view.display(self.model.get_items())
+        DisplayListView.display(self.model.get_items())
 
     def display_specific_item(self):
         index = self.ask_index_input()
         try:
             item = self.model.get_specific_item(index)
-            self.display_specific_item_view.display(item)
+            DisplaySpecificItemView.display(item)
         except IndexError:
             print('Wrong index!')
 
