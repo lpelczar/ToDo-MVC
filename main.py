@@ -3,7 +3,7 @@ from controller import Controller
 
 def main():
     c = Controller()
-    c.begin()
+    c.menu()
 
 
 if __name__ == "__main__":

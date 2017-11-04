@@ -10,7 +10,9 @@ STARTING_INDEX = 1
 
 
 class Controller:
-
+    """
+    The middle man. Operates on model and updates the view to show information to user.
+    """
     OPTIONS = {'1': 'Add Todo Item',
                '2': 'Modify Item',
                '3': 'Delete Item',
@@ -24,7 +26,10 @@ class Controller:
     def __init__(self):
         self.model = Model()
 
-    def begin(self):
+    def menu(self):
+        """
+        Show menu to the user and ask to chose option.
+        """
         os.system('clear')
         self.show_menu()
         while True:
@@ -52,9 +57,15 @@ class Controller:
                     sys.exit()
 
     def show_menu(self):
+        """
+        Update menu view
+        """
         MenuView.display(self.OPTIONS)
 
     def add_todo_item(self):
+        """
+        Add to do item to todo_items list and update view
+        """
         name = self.ask_name_input()
         description = self.ask_description_input()
         date = self.ask_date_input()
@@ -62,6 +73,9 @@ class Controller:
         AddItemView.display(name)
 
     def modify_item(self):
+        """
+        Modify selected item and update view
+        """
         index = self.ask_index_input()
         name = self.ask_name_input()
         description = self.ask_description_input()
@@ -73,6 +87,9 @@ class Controller:
             print('Wrong index!')
 
     def mark_as_done(self):
+        """
+        Mark selected item as done and update view
+        """
         index = self.ask_index_input()
         try:
             self.model.mark_as_done(index)
@@ -81,6 +98,9 @@ class Controller:
             print('Wrong index!')
 
     def delete_item(self):
+        """
+        Delete selected item and update the view
+        """
         index = self.ask_index_input()
         try:
             self.model.delete_item(index)
@@ -89,9 +109,15 @@ class Controller:
             print('Wrong index!')
 
     def display_items(self):
+        """
+        Update the view showing all items in todo items list
+        """
         DisplayListView.display(self.model.get_items())
 
     def display_specific_item(self):
+        """
+        Display selected item by updating the view
+        """
         index = self.ask_index_input()
         try:
             item = self.model.get_specific_item(index)
@@ -100,13 +126,23 @@ class Controller:
             print('Wrong index!')
 
     def save_to_file(self):
+        """
+        Save all todo items to file
+        """
         self.model.save_to_file()
 
     def read_from_file(self):
+        """
+        Read todo items from file
+        """
         self.model.read_from_file()
 
     @staticmethod
     def ask_index_input():
+        """
+        Ask user index input and handle possible exceptions
+        :return: int -> index
+        """
         while True:
             try:
                 index = int(input('Enter index of item: '))
@@ -116,6 +152,10 @@ class Controller:
 
     @staticmethod
     def ask_name_input():
+        """
+        Ask user about todo item name (max 20 characters)
+        :returns: string -> name
+        """
         while True:
             name = input('Enter name (max 20 characters): ').strip()
             if len(name) > MAX_NAME_CHARS:
@@ -125,6 +165,10 @@ class Controller:
 
     @staticmethod
     def ask_description_input():
+        """
+        Ask user about todo item description (max 150 characters)
+        :returns: string -> description
+        """
         while True:
             description = input('Enter description (max 150 characters): ').strip()
             if len(description) > MAX_DESC_CHARS:
@@ -134,6 +178,10 @@ class Controller:
 
     @staticmethod
     def ask_date_input():
+        """
+        Ask user about deadline date for todo item and return it as datetime object
+        :returns: Datetime object or None if no date entered
+        """
         year_index = 0
         month_index = 1
         day_index = 2
